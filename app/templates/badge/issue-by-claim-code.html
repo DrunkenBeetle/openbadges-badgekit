@@ -2,7 +2,8 @@
 
 {% block content %}
   <div class="container">
-    <form class="badge-form" name="input" action="{{ url('badge.issueByEmail', { badgeId: badge.id }) }}" method="post">
+    <div class="notification js-notification"></div>
+    <form class="badge-form" name="input" action="{{ url('badge.issueByClaimCode', { badgeId: badge.id }) }}" method="post">
       <h1>Issue Badge by Claim Code</h1>
       <input type="hidden" name="_csrf" value="{{ csrfToken }}"></input>
       <input type="hidden" name="badgeId" value="{{ badge.id }}"></input>
@@ -14,11 +15,25 @@
       </div>
 
       <div class="form-field-wrapper">
-        <label class="badge-label" for="email">Number of Codes to Generate:</label>
-        <input class="badge-field" type="number" name="number" value=""/>
+        <label class="badge-label" for="email">Claim Code:</label>
+        <p>
+            <input class="badge-field short-badge-field" type="text" name="claim" value=""/> <a class="gen-claim-btn">Auto generate</a>
+        </p>
       </div>
 
-      <button class="btn submit-btn" type="submit" disabled>Generate Claim Codes</button>
+      <div class="form-field-wrapper">
+        <label class="badge-label" for="email">Recipient Email:</label>
+        <p>
+            <input class="badge-field" type="email" name="email" value=""/>
+        </p>
+      </div>
+
+      <button class="btn submit-btn" type="submit">Generate Claim Codes</button>
     </form>
   </div>
 {% endblock %}
+
+{% block scripts -%}
+  {{ super() }}
+  <script src="{{ static('/js/claim.js') }}"></script>
+{%- endblock %}

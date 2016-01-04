@@ -636,6 +636,10 @@ exports.renderIssueByClaimCode = function renderIssueByClaimCode (req, res, next
 };
 
 exports.issueByClaimCode = function issueByClaimCode (req, res, next) {
-  // openbadger does not yet support generation of claim codes via its API
-  return middleware.redirect('directory', 302)(req, res, next);
+  var newClaimCode = { code: req.body.code, claimed: false, email: req.body.email, multiuse: false };
+  var query = res.locals.makeContext({ badge: { slug: req.body.badgeId }, claimCode: newClaimCode });
+
+  return openbadger.createClaimCode(query, function (err, data) {
+    return res.redirect(302, res.locals.url('directory') + '?category=published');
+  });
 };
