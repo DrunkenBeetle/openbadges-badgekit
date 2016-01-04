@@ -13,7 +13,7 @@ jQuery(document).ready(
         jQuery('a.gen-claim-btn').click(
             function()
             {
-                jQuery('input[name=claim]').val(s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4());
+                jQuery('input[name=claimCode]').val(s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4());
 
                 return false;
             }
@@ -26,7 +26,7 @@ jQuery(document).ready(
 
                 notification.empty();
 
-                if (jQuery.trim(jQuery('input[name=claim]').val()).length === 0) {
+                if (jQuery.trim(jQuery('input[name=claimCode]').val()).length === 0) {
                     errMsg = 'The Claim Code is required';
                 } else if (jQuery.trim(jQuery('input[name=email]').val()).length === 0) {
                     errMsg = 'The Recipient Email is required';

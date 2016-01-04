@@ -391,8 +391,8 @@
   .short-badge-field {
     margin-top: 10px;
     margin-right: 2px;
-    display: inline;
-    width: $one-wide;
+    display: inline-block;
+    //width: $one-wide;
   }
   .radio-badge-field {
     margin-right: 5px;
@@ -404,6 +404,9 @@
     margin-left: 5px;
     position: relative;
     top: -3px;
+    cursor: pointer;
+  }
+  a {
     cursor: pointer;
   }
 }
